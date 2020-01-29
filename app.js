@@ -1,10 +1,16 @@
 const express = require("express");
 
 var app = express();
+app.set("view engine", "ejs");
 
 // The landing page
 app.get("/", (req, res) => {
-	res.send("Welcome to the ride hailing app!");
+	res.render("login");
+});
+
+// The user registration page
+app.get("/account/create", (req, res) => {
+	res.render("register");
 });
 
 // * Catch-all route matcher (Everything else)

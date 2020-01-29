@@ -1,0 +1,29 @@
+<%- include ("partials/header") %> 
+	<div class="container">
+		<div class="row">
+			<h1  style="text-align: center;"> Sign up </h1>
+			<div style="width: 30%; margin: 25px auto;">
+				<form method="POST" action="/account/login">
+					<div class="form-group">
+						<input class="form-control" type="email" name="email" placeholder="E-mail address" required />
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="text" name="password" placeholder="Password" required />
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="text" name="fullname" placeholder="Full names" required />
+					</div>
+                    <div class="form-group">
+						<input class="form-control" type="text" name="user_type" placeholder="Driver or Customer" required />
+					</div>
+					<div class="form-group">
+						<button class="btn btn-large btn-default btn-block btn-primary" type="submit" name="submit"> Submit! </button>	
+					</div>
+					
+				</form>
+				<!-- <p> <a href="/account/create"> Create an account? </a> </p> -->
+			</div>
+		</div>
+	</div>
+
+<%- include ("partials/footer") %> 
