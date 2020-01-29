@@ -3,6 +3,9 @@ const express = require("express");
 var app = express();
 app.set("view engine", "ejs");
 
+// Include a public directory for storing static assets
+app.use(express.static("public"));
+
 // The landing page
 app.get("/", (req, res) => {
 	res.render("login");
