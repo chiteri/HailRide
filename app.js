@@ -70,9 +70,23 @@ app.post("/login", passport.authenticate("local", {
 });
 
 // The landing page for a logged in user
-app.get("/home", (req, res) => {
+app.get("/home", isLoggedIn, (req, res) => {
 	res.render("home");
 });
+
+// Logout logic
+app.get("/logout", (req, res) => {
+	req.logout();
+	res.redirect("/login");
+});
+
+// Middleware to confirm if a user is logged in
+function isLoggedIn(req, res, next) {
+	if (req.isAuthenticated()) {
+		return next();
+	}
+	res.redirect("/login");
+}
 
 // * Catch-all route matcher (Everything else)
 app.get("*", (req, res) => {
