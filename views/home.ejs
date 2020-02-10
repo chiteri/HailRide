@@ -1,0 +1,123 @@
+<%- include ("partials/header") %> 
+<script src="/js/map.js"></script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE&callback=initMap">
+</script>
+	<div class="container">
+		<div class="row">
+      
+			<!-- Menu -->
+			<div class="col-md-3"> 
+          <p class="lead"> Welcome </p>
+          <!-- <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+              <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-messages" aria-selected="false">History</a>
+              <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+              <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+          </div> -->
+
+          <div class="list-group">
+            <button type="button" class="list-group-item list-group-item-action active">
+              Cras justo odio
+            </button>
+            <button type="button" class="list-group-item list-group-item-action">Home</button>
+            <button type="button" class="list-group-item list-group-item-action">History</button>
+            <button type="button" class="list-group-item list-group-item-action">Profile</button>
+            <button type="button" class="list-group-item list-group-item-action" disabled>Settings</button>
+          </div>
+      </div>
+                  
+      <!-- Page content -->
+      <div class="col-md-9">
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active embed-responsive embed-responsive-16by9" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <!-- <iframe class="embed-responsive-item" src="/map.html">
+            </iframe> -->
+            <div id="map"> </div>
+          </div>
+              <div class="tab-pane fade" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                <h4> Trips history </h4>
+                <table class="table">
+                    <thead class="thead-light bg-info">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Date / time</th>
+                        <th scope="col">From</th>
+                        <th scope="col">To</th>
+                        <th scope="col">Distance</th>
+                        <th scope="col">Driver</th>
+                        <th scope="col">Duration</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td> January 2, 2020 16:46 Hrs</td>
+                        <td> Clareview </td>
+                        <td> St. Albert </td>
+                        <td> 13 KMs </td>
+                        <td> Mark </td>
+                        <td> 32 minutes </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td> January 16, 2020 9:14 Hrs</td>
+                        <td> Sherwod park </td>
+                        <td> Windermere </td>
+                        <td> 25 KMs </td>
+                        <td> Jacob </td>
+                        <td> 47 minutes </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td> January 25, 2020 10:23 Hrs </td>
+                        <td> University hospital </td>
+                        <td> Capilano </td>
+                        <td> 7 KMs </td>
+                        <td> Valerie </td>
+                        <td> 32 minutes </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">4</th>
+                        <td> January 28, 2020 122:46 Hrs </td>
+                        <td> West Edmonton mall </td>
+                        <td> Ellerslie </td>
+                        <td> 49 KMs </td>
+                        <td> Ryan </td>
+                        <td> 56 minutes </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">5</th>
+                        <td> January 31, 2020 16:46 Hrs</td>
+                        <td> Millwoods </td>
+                        <td> McConachie </td>
+                        <td> 13 KMs </td>
+                        <td> Mark </td>
+                        <td> 32 minutes </td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+
+              <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                  <p>... Adjust settings ...</p>
+              </div>
+
+          </div>
+        </div>
+
+		  </div>
+    </div>
+
+<%- include ("partials/footer") %> 
