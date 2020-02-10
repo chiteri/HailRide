@@ -29,6 +29,12 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// A middleware function to include a new user's data to each page
+app.use((req, res, next) => {
+	res.locals.currentUser = req.user;
+	next();
+});
+
 // The landing page
 app.get("/", (req, res) => {
 	res.render("login");
