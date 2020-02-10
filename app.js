@@ -57,6 +57,18 @@ app.post("/register", (req, res) => {
 	});
 });
 
+// Show login form 
+app.get("/login", (req, res) => {
+	res.render("login");
+});
+
+// Handling login logic
+app.post("/login", passport.authenticate("local", {
+		successRedirect: "/home",
+		failureRedirect: "/login"
+	}), (req, res) => {
+});
+
 // The landing page for a logged in user
 app.get("/home", (req, res) => {
 	res.render("home");
