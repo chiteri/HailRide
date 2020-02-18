@@ -1,6 +1,7 @@
 const express  = require("express"), 
-      passport = require("passport"),
-	  User     = require("../models/user");
+	  passport = require("passport"),
+	  User     = require("../models/user"),
+	  middleware = require("../middleware");
 	  
 var router = express.Router();
 
@@ -51,7 +52,7 @@ router.post("/login", passport.authenticate("local", {
 });
 
 // The landing page for a logged in user
-router.get("/home", isLoggedIn, (req, res) => {
+router.get("/home", middleware.isLoggedIn, (req, res) => {
 	res.render("home");
 });
 
@@ -60,14 +61,6 @@ router.get("/logout", (req, res) => {
 	req.logout();
 	res.redirect("/login");
 });
-
-// Middleware to confirm if a user is logged in
-function isLoggedIn(req, res, next) {
-	if (req.isAuthenticated()) {
-		return next();
-	}
-	res.redirect("/login");
-}
 
 // * Catch-all route matcher (Everything else)
 router.get("*", (req, res) => {
