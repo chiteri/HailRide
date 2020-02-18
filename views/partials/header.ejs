@@ -29,10 +29,18 @@
 						<li class="nav-item active"><a class="nav-link" href="/login">Login</a></li>
 						<li class="nav-item"><a class="nav-link" href="/register"> Sign Up</a></li>
 						<% } else { %>
-						<li class="nav-item"><a class="nav-link" href="#"> <%= currentUser.username %> </a> </li>
+						<li class="nav-item"><a class="nav-link" href="#">Logged in as <%= currentUser.username %> </a> </li>
 						<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
 						<% } %>
 					</ul>
 				</div>
 			</div>
 		</nav>
+		<div class="container">
+			<% if (error && error.length > 0) { %>	
+				<div class="alert alert-danger"> <%= error %> </div>
+				<% } %>
+				<% if (success && success.length > 0) { %>
+				<div class="alert alert-success"> <%= success %> </div>
+				<% } %>
+		</div>

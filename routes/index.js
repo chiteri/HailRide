@@ -29,11 +29,13 @@ router.post("/register", (req, res) => {
 	var newUser = new User({username: req.body.username});
 	User.register(newUser, req.body.password, (err, user) => {
 		if(err) {
-			console.log(err);
-			return res.render("register");
+			req.flash("error", err);
+			return res.redirect("/register");
+			// return res.render("register");
 		}
 		// Else authenticate the new user
 		passport.authenticate("local")(req, res, () => {
+			req.flash("success", "Welcome to YelpCamp "+user.username+"!!");
 			res.redirect("/home");
 		});
 	});
@@ -59,6 +61,7 @@ router.get("/home", middleware.isLoggedIn, (req, res) => {
 // Logout logic
 router.get("/logout", (req, res) => {
 	req.logout();
+	req.flash("success", "Logged you out!");
 	res.redirect("/login");
 });
 
