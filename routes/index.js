@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
 // =============
 // The user registration page
 router.get("/register", (req, res) => {
-	res.render("register");
+	res.render("register", {page: 'register'});
 });
 
 // Handle sign up logic
@@ -29,13 +29,13 @@ router.post("/register", (req, res) => {
 	var newUser = new User({username: req.body.username});
 	User.register(newUser, req.body.password, (err, user) => {
 		if(err) {
-			req.flash("error", err);
-			return res.redirect("/register");
-			// return res.render("register");
+			// req.flash("error", err);
+			// return res.redirect("/register");
+			return res.render("register", {error: err.message});
 		}
 		// Else authenticate the new user
 		passport.authenticate("local")(req, res, () => {
-			req.flash("success", "Welcome to YelpCamp "+user.username+"!!");
+			req.flash("success", "Welcome to Hail-A-Ride "+user.username+"!!");
 			res.redirect("/home");
 		});
 	});
@@ -43,7 +43,7 @@ router.post("/register", (req, res) => {
 
 // Show login form 
 router.get("/login", (req, res) => {
-	res.render("login");
+	res.render("login", {page: 'login'});
 });
 
 // Handling login logic
@@ -55,7 +55,7 @@ router.post("/login", passport.authenticate("local", {
 
 // The landing page for a logged in user
 router.get("/home", middleware.isLoggedIn, (req, res) => {
-	res.render("home");
+res.render("home", {page: 'home'});
 });
 
 // Logout logic
