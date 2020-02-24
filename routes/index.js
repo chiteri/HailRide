@@ -26,7 +26,13 @@ router.get("/register", (req, res) => {
 
 // Handle sign up logic
 router.post("/register", (req, res) => {
-	var newUser = new User({username: req.body.username});
+	var newUser = new User({firstName: req.body.firstName, 
+							lastName: req.body.lastName,
+							username: req.body.username,
+							email: req.body.email,
+							avatar: req.body.avatar,
+							userType: req.body.accountType
+						});
 	User.register(newUser, req.body.password, (err, user) => {
 		if(err) {
 			// req.flash("error", err);
@@ -63,6 +69,17 @@ router.get("/logout", (req, res) => {
 	req.logout();
 	req.flash("success", "Logged you out!");
 	res.redirect("/login");
+});
+
+// USER PROFILE
+router.get("/users/:id", middleware.isLoggedIn, (req, res) => {
+	User.findById(req.params.id, (err, foundUser) => {
+		if (err) {
+			req.flash("error", "Something went wrong ...");
+			res.redirect("/");
+		} 
+		res.render("users/show", {user: foundUser});		
+	});
 });
 
 // * Catch-all route matcher (Everything else)

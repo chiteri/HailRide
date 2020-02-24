@@ -4,16 +4,25 @@
 			<div class="col-4">
 				<form method="POST" action="/register">
 					<div class="form-group">
-						<input class="form-control" type="email" name="username" placeholder="E-mail address" required />
+						<input class="form-control" type="text" name="firstName" placeholder="First name" required />
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="text" name="lastName" placeholder="Surname" required />
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="text" name="username" placeholder="Username" required />
 					</div>
 					<div class="form-group">
 						<input class="form-control" type="password" name="password" placeholder="Password" required />
 					</div>
 					<div class="form-group">
-						<input class="form-control" type="password" name="password_repeat" placeholder="Repeat Password" required />
+						<input class="form-control" type="password" name="passwordRepeat" placeholder="Repeat Password" required />
 					</div>
 					<div class="form-group">
-						<input class="form-control" type="text" name="fullname" placeholder="Full names" required />
+						<input class="form-control" type="email" name="email" placeholder="E-mail address" required />
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="text" name="avatar" placeholder="Avatar image URL" required />
 					</div>
                     <!-- <div class="form-group">
 						<input class="form-control" type="text" name="user_type" placeholder="Driver or Customer" required />
@@ -21,11 +30,11 @@
 
 					<div class="form-group">
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="account_type" id="customer" value="customer">
+							<input class="form-check-input" type="radio" name="accountType" id="customer" value="Customer">
 							<label class="form-check-label" for="customer">Customer</label>
 						</div>
 						<div class="form-check form-check-inline">
-							<input class="form-check-input" type="radio" name="account_type" id="driver" value="driver">
+							<input class="form-check-input" type="radio" name="accountType" id="driver" value="Driver">
 							<label class="form-check-label" for="driver">Driver</label>
 						</div>
 					</div>

@@ -1,0 +1,31 @@
+<%- include ("../partials/header") %> 
+    <div class="row">
+          
+          <!-- Menu -->
+          <div class="col-md-3"> 
+              <p class="lead"> Welcome </p>
+              <!-- <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                  <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+                  <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-messages" aria-selected="false">History</a>
+                  <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                  <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+              </div> -->
+
+              <div class="list-group">
+                <button type="button" class="list-group-item list-group-item-action">Home</button>
+                <button type="button" class="list-group-item list-group-item-action">History</button>
+                <button type="button" class="list-group-item list-group-item-action active">Profile</button>
+                <button type="button" class="list-group-item list-group-item-action" disabled>Settings</button>
+              </div>
+          </div>
+                      
+          <!-- Page content -->
+          <div class="col-md-9">
+            <div class="thumbnail">
+              <h1> <%= user.firstName +" "+ user.lastName %> (<%= user.userType %>) </h1>
+              <img src="<%= user.avatar %>" alt="User profile image" />
+              <div class="caption"><a href="mailto:<%= user.email %>"><%= user.email %></a></div>
+            </div>
+          </div>
+    </div>
+<%- include ("../partials/footer") %> 
