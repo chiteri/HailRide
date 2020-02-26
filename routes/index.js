@@ -30,6 +30,7 @@ router.post("/register", (req, res) => {
 							lastName: req.body.lastName,
 							username: req.body.username,
 							email: req.body.email,
+							telephone: req.body.telephone,
 							avatar: req.body.avatar,
 							userType: req.body.accountType
 						});

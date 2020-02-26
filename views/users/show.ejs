@@ -12,7 +12,7 @@
               </div> -->
 
               <div class="list-group">
-                <button type="button" class="list-group-item list-group-item-action">Home</button>
+                <button type="button" class="list-group-item list-group-item-action"><a href="/home">Home</a></button>
                 <button type="button" class="list-group-item list-group-item-action">History</button>
                 <button type="button" class="list-group-item list-group-item-action active">Profile</button>
                 <button type="button" class="list-group-item list-group-item-action" disabled>Settings</button>
@@ -25,6 +25,7 @@
               <h1> <%= user.firstName +" "+ user.lastName %> (<%= user.userType %>) </h1>
               <img src="<%= user.avatar %>" alt="User profile image" />
               <div class="caption"><a href="mailto:<%= user.email %>"><%= user.email %></a></div>
+              <div class="caption">Phone: <%= user.telephone %></div>
             </div>
           </div>
     </div>
