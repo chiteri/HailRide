@@ -1,118 +1,144 @@
 <%- include ("partials/header") %> 
-<script src="/js/map.js"></script>
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE&callback=initMap">
-</script>
 		<div class="row">
       
 			<!-- Menu -->
 			<div class="col-md-3"> 
           <p class="lead"> Welcome </p>
-          <!-- <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-              <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
-              <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-messages" aria-selected="false">History</a>
-              <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
-              <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
-          </div> -->
-
           <div class="list-group">
             <button type="button" class="list-group-item list-group-item-action active">Home</button>
             <button type="button" class="list-group-item list-group-item-action">History</button>
-            <button type="button" class="list-group-item list-group-item-action">Profile</button>
+            <button type="button" class="list-group-item list-group-item-action"><a href="/users/<%= currentUser.id %>">Profile</a></button>
             <button type="button" class="list-group-item list-group-item-action" disabled>Settings</button>
           </div>
       </div>
                   
       <!-- Page content -->
       <div class="col-md-9">
-        <div class="tab-content" id="v-pills-tabContent">
-          <div class="tab-pane fade show active embed-responsive embed-responsive-16by9" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-            <!-- <iframe class="embed-responsive-item" src="/map.html">
-            </iframe> -->
-            <div id="map"> </div>
-          </div>
-              <div class="tab-pane fade" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                <h4> Trips history </h4>
-                <table class="table">
-                    <thead class="thead-light bg-info">
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Date / time</th>
-                        <th scope="col">From</th>
-                        <th scope="col">To</th>
-                        <th scope="col">Distance</th>
-                        <th scope="col">Driver</th>
-                        <th scope="col">Duration</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td> January 2, 2020 16:46 Hrs</td>
-                        <td> Clareview </td>
-                        <td> St. Albert </td>
-                        <td> 13 KMs </td>
-                        <td> Mark </td>
-                        <td> 32 minutes </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td> January 16, 2020 9:14 Hrs</td>
-                        <td> Sherwod park </td>
-                        <td> Windermere </td>
-                        <td> 25 KMs </td>
-                        <td> Jacob </td>
-                        <td> 47 minutes </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td> January 25, 2020 10:23 Hrs </td>
-                        <td> University hospital </td>
-                        <td> Capilano </td>
-                        <td> 7 KMs </td>
-                        <td> Valerie </td>
-                        <td> 32 minutes </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">4</th>
-                        <td> January 28, 2020 122:46 Hrs </td>
-                        <td> West Edmonton mall </td>
-                        <td> Ellerslie </td>
-                        <td> 49 KMs </td>
-                        <td> Ryan </td>
-                        <td> 56 minutes </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">5</th>
-                        <td> January 31, 2020 16:46 Hrs</td>
-                        <td> Millwoods </td>
-                        <td> McConachie </td>
-                        <td> 13 KMs </td>
-                        <td> Mark </td>
-                        <td> 32 minutes </td>
-                      </tr>
-                    </tbody>
-                  </table>
-              </div>
+          <div id="map"> </div>
 
-              <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+          <% if (currentUser.userType === "Customer") { %>
+
+          <!-- form to display from and to for your ride -->
+          <form method="POST" action="/ride/request">
+            <!-- <div class="form-group">
+              <label for="origin">From</label>
+              <input type="text" class="form-control" id="origin" aria-describedby="fromHelp">
+              <small id="fromHelp" class="form-text text-muted">Your current location or where to start trip from.</small>
+            </div> -->
+            <!-- <div class="form-group"> -->
+              <!-- <label for="destination">Where to?</label> -->
+              <h5 class="pl-3">Where to?</h5>
+              <div class="d-flex flex-row flex-wrap">
+                <div class="form-group col">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="fa fa-search-plus"></i>
+                      </span>
                     </div>
+                    <input type="text" class="form-control autocomplete" id="destination"> </input>
                   </div>
+                </div>
               </div>
+            <!-- </div> -->
+            <!-- <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div> -->
+            <input id="customer_id" name="customer_id" type="hidden" value="<%= currentUser.id %>">
+            <button type="submit" id="request-ride" class="btn btn-primary">Request ride</button>
+          </form>
+          <% } else if (currentUser.userType === "Driver") { %>
+            <h5>Ready for rides?</h5>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-secondary active">
+                <input type="radio" name="options" id="Available" checked> Available
+              </label>
+              <label class="btn btn-secondary">
+                <input type="radio" name="options" id="Unavailable"> Not available
+              </label>
+            </div>
+          <% } %>
 
-              <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                  <p>... Adjust settings ...</p>
-              </div>
+      </div>
+      <script>
+      // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+      // locate you.
+      var map, infoWindow;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          // center: {lat: 53.602, lng: -113.411}, // Edmonton
+          zoom: 6
+        });
+        infoWindow = new google.maps.InfoWindow;
 
-          </div>
-        </div>
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.watchPosition(findLocation, showError, {timeout:10000, enableHighAccuracy: true}); 
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
 
-		  </div>
+        // Initialize places autocomplete 
+        var input = document.getElementById('destination');
 
+        var options = {types: ['geocode']};
+        autocomplete = new google.maps.places.Autocomplete(input, options);
+
+      }
+
+      // Success callback
+      function findLocation(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            }; 
+
+            // infoWindow.setPosition(pos);
+            // infoWindow.setContent('Location found.');
+            // infoWindow.open(map);
+            map.setCenter(pos);
+
+            // Place a marker at the current position 
+            var marker = new google.maps.Marker({position: pos, 
+              map: map,
+              // animation: google.maps.Animation.DROP,
+              title: "Your location"
+            });
+      }
+
+      // Error callback 
+      function showError(error) {
+        switch(error.code) {
+          case error.PERMISSION_DENIED:
+            console.log("Permission denied by user.");
+            break;
+          case error.POSITION_UNAVAILABLE:
+            console.log("Location position unavailable.");
+            break;
+          case error.TIMEOUT:
+            console.log("Request timeout.");
+            break;
+          case error.UNKNOWN_ERROR:
+            console.log("Unknown error.");
+            break;
+        }
+        handleLocationError(true, infoWindow, map.getCenter());
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
+      </script>
+      <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE&libraries=places&callback=initMap">
+      </script>
 <%- include ("partials/footer") %> 

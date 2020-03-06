@@ -6,16 +6,26 @@ const express   = require("express"),
 	 flash		= require("connect-flash"),
 	 passport 	= require("passport"),
 	 LocalStrategy = require("passport-local"),
-	 User		= require("./models/user");
+	 User		= require("./models/user"),
+	 https = require("https"),
+	 fs = require("fs");
 ;
 
 // Require routes separately
-const authRoutes = require("./routes/index");
+const rideRoutes = require("./routes/rides"), 
+	  authRoutes = require("./routes/index");
 
 var app = express();
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(flash());
+
+// Options for encryption 
+const options = {
+	key: fs.readFileSync(process.env.SSL_KEY_PATH), //ssl-cert-snakeoil.key"),
+	cert: fs.readFileSync(process.env.SSL_CERT_PATH) // ssl-cert-snakeoil.crt") 
+  };
+  
 
 // Include a public directory for storing static assets
 app.use(express.static(__dirname+"/public"));
@@ -46,8 +56,13 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use("/", authRoutes);
+app.use("/ride", rideRoutes);
 
 // Tell Express to listen for requests (start server)
 app.listen(3000, () => {
 	console.log("Ride hailing app's server listening on port 3000");
 });
+
+// app.listen(8000);
+
+https.createServer(options, app).listen(3030);
